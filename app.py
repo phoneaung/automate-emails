@@ -12,7 +12,7 @@ PORT = 587
 EMAIL_SERVER = 'smtp-mail.outlook.com'
 
 # load the environment variables from .env file 
-# included if statement so that it will also work in Jupyter Notebook
+# included the if statement so that it will also work in Jupyter Notebook
 current_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path.cwd()
 envars = current_dir / ".env"
 load_dotenv(envars)
@@ -31,4 +31,30 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
 
     # add BCC and CC
 
-    msg.set_content()
+    msg.set_content(
+        f"""\
+        Hi {name},
+        I hope this email finds you well.
+        I would like to remind you that MMK {amount} in invoice {invoice_no} is due for payment on {due_date}.
+        Thank you and please let me know if you have any concerns.
+        Best Regards,
+        Phone Aung
+        """
+    )
+
+    # add HTML version
+    msg.add_alternative(
+        f"""\
+        <html>
+            <body>
+                <p>Hi {name},</p>
+                <p>I hope this email finds you well.</p>
+                <p>I would like to remind you that <strong>MMK {amount}</strong> in invoice {invoice_no} is due for payment on <strong>{due_date}</strong>.</p>
+                <p>Thank you and please let me know if you have any concerns.</p>
+                <p>Best Regards,</p>
+                <p>Phone Aung</p>
+            </body>
+        </html> 
+        """, 
+        subtype="html",
+    )
