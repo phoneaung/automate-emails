@@ -1,7 +1,12 @@
 from datetime import datetime
 from send_email import send_email
 
-import pandas as pd
+import pandas as pd 
+import certifi
+
+# Set SSL certificates for requests
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # public google sheets or excel url
 # convert the file into csv format
