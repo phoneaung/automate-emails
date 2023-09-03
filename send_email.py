@@ -22,7 +22,7 @@ sender_email = os.getenv("EMAIL_ADDRESS")
 email_password = os.getenv("EMAIL_PASSWORD")
 
 
-def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
+def send_email(subject, receiver_email, name, transferred_date, invoice_no, amount):
     # create email msg
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -33,9 +33,9 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
 
     msg.set_content(
         f"""\
-        Hi {name},
+        Dear {name},
         I hope this email finds you well.
-        I would like to remind you that MMK {amount} in invoice {invoice_no} is due for payment on {due_date}.
+        I would like to let you know that payment for invoice {invoice_no} and total amount MMK {amount} has been processed.
         Thank you and please let me know if you have any concerns.
         Best Regards,
         Phone Aung
@@ -49,7 +49,7 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
             <body>
                 <p>Hi {name},</p>
                 <p>I hope this email finds you well.</p>
-                <p>I would like to remind you that <strong>MMK {amount}</strong> in invoice {invoice_no} is due for payment on <strong>{due_date}</strong>.</p>
+                <p>I would like to let you know that payment for invoice <strong>{invoice_no}</strong> and total amount <strong>MMK {amount}</strong> has been processed on {transferred_date}.</p>
                 <p>Thank you and please let me know if you have any concerns.</p>
                 <p>Best Regards,</p>
                 <p>Phone Aung</p>
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         subject="Weekly Invoice",
         name="Ba Chit",
         receiver_email="yoyewox558@stypedia.com",
-        due_date="9 September 2023",
+        transferred_date="9 September 2023",
         invoice_no="BC-0010",
         amount="5,000,000",
     )
