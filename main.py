@@ -9,7 +9,7 @@ import requests
 # Set SSL certificates for requests. not recommended for production use.
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# public google sheets or excel url
+# public google sheets or excel url 
 # convert the file into csv format
 SHEET_ID = "1Gq9ERrEABzw6Tc7gYvb7TeaSk7r0UrbCaMEjAUQNi6E" # find the id in url
 SHEET_NAME = "Sheet1"
