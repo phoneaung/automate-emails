@@ -3,9 +3,10 @@ from send_email import send_email
 
 import pandas as pd 
 import certifi
-
-# Set SSL certificates for requests
 import ssl
+import requests
+
+# Set SSL certificates for requests. not recommended for production use.
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # public google sheets or excel url
