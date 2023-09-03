@@ -58,3 +58,20 @@ def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
         """, 
         subtype="html",
     )
+
+    # send email
+    with smtplib.SMTP(EMAIL_SERVER, PORT) as smtp:
+        smtp.starttls()
+        smtp.login(sender_email, email_password)
+        smtp.sendmail(sender_email, receiver_email, msg.as_string())
+
+
+if __name__ == "__main__":
+    send_email(
+        subject="Weekly Invoice",
+        name="Ba Chit",
+        receiver_email="yoyewox558@stypedia.com",
+        due_date="9 September 2023",
+        invoice_no="BC-0010",
+        amount="5,000,000",
+    )
