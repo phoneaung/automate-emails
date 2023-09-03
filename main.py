@@ -23,4 +23,33 @@ def load_df(url):
 
     return df
 
-print(load_df(URL))
+# print(load_df(URL))
+
+
+# Use pandas to query data and send emails according to the criterias
+def query_data_and_send_emails(df):
+    present = datetime.today()
+
+    # set an email counter for how many emails have we sent 
+    email_counter = 0
+
+    # python will send email if the reminder date is today or passed
+    # python will only send email if it is not paid yet
+    for _, row in df.iterrows():
+        if (present >= row["reminder_date"].date()) and (row["has_paid"] == "no"):
+            send_email(
+                subject=f"[Phone Aung] Invoice: {row['invoice_no']}",
+                receiver_email=row["email"],
+                name=row["name"],
+                due_date=row["due_date"].strftime("%d, %b %Y"),
+                invoice_no=row["invoice_no"],
+                amount=row["amount"],
+            )
+            email_counter += 1
+    
+    return f"Total emails sent: {email_counter}"
+
+
+df = load_df(URL)
+result = query_data_and_send_emails(df)
+print(result)
