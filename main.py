@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 from send_email import send_email
 
 import pandas as pd 
@@ -28,7 +28,7 @@ def load_df(url):
 
 # Use pandas to query data and send emails according to the criterias
 def query_data_and_send_emails(df):
-    present = datetime.today()
+    present = date.today()
 
     # set an email counter for how many emails have we sent 
     email_counter = 0
