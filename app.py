@@ -21,3 +21,14 @@ load_dotenv(envars)
 sender_email = os.getenv("EMAIL_ADDRESS")
 email_password = os.getenv("EMAIL_PASSWORD")
 
+
+def send_email(subject, receiver_email, name, due_date, invoice_no, amount):
+    # create email msg
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = formataddr(("Phone Aung", f"{sender_email}"))
+    msg["To"] = receiver_email
+
+    # add BCC and CC
+
+    msg.set_content()
