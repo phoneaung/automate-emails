@@ -23,12 +23,12 @@ def load_df(url):
 
     return df
 
-print(load_df(URL))
+# print(load_df(URL))
 
 
 # Use pandas to query data and send emails according to the criterias
 def query_data_and_send_emails(df):
-    present = date.today()
+    # present = date.today()
 
     # set an email counter for how many emails have we sent 
     email_counter = 0
